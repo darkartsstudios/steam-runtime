@@ -38,13 +38,8 @@ def parse_args():
 	return parser.parse_args()
 
 def download_file(file_url, file_path):
-	try:
-		if os.path.getsize(file_path) > 0:
-			return False
-	except:
-		pass
-
-	urllib.urlretrieve(file_url, file_path)
+	command = "wget -c -t 100 --progress=bar:force -O \"" + file_path + "\" \"" + file_url + "\""
+	os.system( command )
 	return True
 
 def install_sources (sourcelist):
