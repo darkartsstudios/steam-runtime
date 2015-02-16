@@ -116,7 +116,8 @@ def install_binaries (binarylist):
 		#
 		packages_url = "%s/dists/%s/%s/binary-%s/Packages" % (REPO, DIST, COMPONENT, arch)
 		print("Downloading %s binaries from %s" % (arch, packages_url))
-		for stanza in deb822.Packages.iter_paragraphs(urllib.urlopen(packages_url)):
+		all_packages = [pkg for pkg in deb822.Packages.iter_paragraphs(urllib.urlopen(packages_url))]
+		for stanza in all_packages:
 			p = stanza['Package']
 			if p in installset:
 				if args.verbose:
