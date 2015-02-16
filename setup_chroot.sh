@@ -16,6 +16,9 @@ set -o nounset
 
 prebuild_chroot()
 {
+	# Ensure we have a sane & working locale
+	export LC_ALL=C
+
 	# install some packages
 	echo -e "\n${COLOR_ON}Installing debootstrap schroot...${COLOR_OFF}"
 	sudo -E apt-get install -y debootstrap schroot
